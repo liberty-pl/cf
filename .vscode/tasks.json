@@ -23,6 +23,28 @@
                 "isDefault": true
             },
             "detail": "调试器生成的任务。"
+        },
+        {
+            "label": "Open All CPP Files",
+            "type": "shell",
+            "command": "Get-ChildItem *.cpp | ForEach-Object { code -r $_.FullName }",
+            "problemMatcher": [],
+            "group": "none",
+            "presentation": {
+                "reveal": "silent",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Open Recent CPP Files (Last 1 Hour)",
+            "type": "shell",
+            "command": "Get-ChildItem *.cpp | Where-Object { $_.CreationTime -gt (Get-Date).AddHours(-1) } | ForEach-Object { code -r $_.FullName }",
+            "problemMatcher": [],
+            "group": "none",
+            "presentation": {
+                "reveal": "silent",
+                "panel": "shared"
+            }
         }
     ],
     "version": "2.0.0"
