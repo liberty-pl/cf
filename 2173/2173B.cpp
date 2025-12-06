@@ -32,6 +32,15 @@ void solve() {
         mini[i] = min(mini[i - 1] - v1[i], v2[i] - maxi[i - 1]);
     }
     cout << maxi[n - 1] << endl;
+    /* solution(easier)
+    ll mx = 0, mn = 0;
+    for (int i = 1; i <= n; ++i) {
+        ll new_mx = max(mx - a[i], b[i] - mn);
+        ll new_mn = min(mn - a[i], b[i] - mx);
+        mx = new_mx, mn = new_mn;
+    }
+    cout << mx << endl;
+    */
 }
 
 int main() {
