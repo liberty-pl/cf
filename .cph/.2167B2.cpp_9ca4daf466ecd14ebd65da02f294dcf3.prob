@@ -1,0 +1,1 @@
+{"name":"Local: 2167B2","url":"c:\\Users\\KAZUSAMA\\Documents\\cpp\\cf\\2167B2.cpp","tests":[{"id":1765466195104,"input":"5\n1\n1\n3\n101\n4\n0110\n11\n10101010100\n2\n11","output":"0\n1\n2\n2\n0\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\KAZUSAMA\\Documents\\cpp\\cf\\2167B2.cpp","group":"local","local":true}
