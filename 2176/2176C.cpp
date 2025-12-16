@@ -9,14 +9,14 @@ using i128 = __int128;
 
 void solve()
 {
-    int n;
+    i64 n;
     cin >> n;
-    vector<int> a(n), odd, even;
-    for (int i = 0; i < n; i++)
+    vector<i64> a(n), odd, even;
+    for (i64 i = 0; i < n; i++)
     {
         cin >> a[i];
     }
-    for (int x : a)
+    for (i64 x : a)
     {
         if (x % 2)
         {
@@ -27,61 +27,48 @@ void solve()
             even.push_back(x);
         }
     }
-    sort(odd.begin(), odd.end());
-    sort(even.begin(), even.end(), greater<>());
-    if (even.size() == 0)
-    {
+    
+    if (odd.size() == 0) {
         for (int i = 0; i < n; i++)
         {
-            if (i % 2)
-            {
+            cout << "0 ";
+        }
+        cout << '\n';
+        return;
+    }
+    auto it = max_element(odd.begin(), odd.end());
+    int max_odd = *it;
+    if(even.size() == 0){
+        for (int i = 0; i < n; i++)
+        {
+            if (i%2 == 0){
+                cout << max_odd << ' ';
+            } else {
                 cout << 0 << ' ';
             }
-            else
-            {
-                cout << odd.back() << ' ';
-            }
         }
         cout << '\n';
         return;
     }
-    if (odd.size() == 0)
+    vector<i64> ans(n, odd.back());
+    sort(even.begin(),even.end(),greater<>());
+    ans[0] = max_odd;
+    for (i64 i = 1; i < even.size()+1; i++)
     {
-        for (int i = 0; i < n; i++)
-        {
-            cout << 0 << ' ';
-        }
-        cout << '\n';
-        return;
+        ans[i] = ans[i - 1] + even[i-1];
     }
-    vector<int> ans(n, odd.back());
-    for (int i = 0; i < even.size() + 1; i++)
+    for (i64 i = even.size() + 1; i < n; i++)
     {
-        for (int j = 0; j < i; j++)
-        {
-            ans[i] += even[j];
+        if ((i - even.size()) % 2) {
+            ans[i] = ans[i - 1] - even.back();
+        } else {
+            ans[i] = ans[i - 1] + even.back();
         }
     }
-    for (int i = even.size() + 1; i < n; i++)
-    {
-        if ((i - even.size() - 1) % 2 == 0)
-        {
-            ans[i] = ans[even.size()] - even.back();
-        }
-        else
-        {
-            ans[i] = ans[even.size()];
-        }
-    }
-    if (odd.size() % 2 == 0 && n%2 == 1)
-    {
-        for (int i = n-3; i >= 0; i-=2)
-        {
-            ans[i] = odd.back();
-        }
+    if (odd.size()%2 == 0){
         ans[n - 1] = 0;
     }
-    for (int i = 0; i < n; i++)
+    for (i64 i = 0; i < n; i++)
     {
         cout << ans[i] << ' ';
     }
@@ -93,7 +80,7 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    int t;
+    i64 t;
     cin >> t;
 
     while (t--)
