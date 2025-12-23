@@ -23,6 +23,7 @@ void solve() {
     {
         if(v2[i]>=v2[i+1]+v2[i-1]){
             sum++;
+            v2[i+1] = 2e18;
         }
     }
     cout << n - sum - 1 << '\n';
